@@ -25,6 +25,13 @@
     [`UI/UX &amp; Graphic Designer crafting<br>intuitive digital products &amp; brands.`, `Designer UI/UX &amp; graphique, je crée<br>des produits numériques et des marques intuitifs.`],
     [`7+ years across web, mobile, branding<br>and motion, based in France.`, `Plus de 7 ans en web, mobile, branding<br>et motion design, basé en France.`],
     [`Download CV <span class="arrow">↓</span>`, `Télécharger le CV <span class="arrow">↓</span>`],
+    [`View CV <span class="arrow">↗</span>`, `Voir le CV <span class="arrow">↗</span>`],
+    [`Choose a language`, `Choisissez une langue`],
+    [`Download my CV in English or French.`, `Téléchargez mon CV en anglais ou en français.`],
+    [`English CV`, `CV en anglais`],
+    [`French CV`, `CV en français`],
+    [`PDF · 1 page`, `PDF · 1 page`],
+    [`Download <span class="arrow">↓</span>`, `Télécharger <span class="arrow">↓</span>`],
     [`↕ Drag the badge`, `↕ Faites glisser le badge`],
 
     /* ---------- Skills strip / tags ---------- */
