@@ -19,6 +19,7 @@
   menu.id = 'site-menu';
   menu.className = 'menu-overlay';
   menu.innerHTML = `
+    <div class="menu-lang"><small>Language</small><div class="lang-switch" role="group" aria-label="Language / Langue"><button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button></div></div>
     <nav class="menu-links" aria-label="Main">
       ${links.map(([label, href], i) =>
         `<a href="${href}" style="--d:${(0.25 + i * 0.06).toFixed(2)}s"><span>0${i + 1}</span>${label}</a>`).join('')}
@@ -28,6 +29,10 @@
       <a class="menu-cta" href="${sec('contact')}">Let's talk <span aria-hidden="true">↗</span></a>
     </div>`;
   document.body.appendChild(menu);
+  // Show the current language on the menu's EN/FR switch (i18n.js may already have run)
+  const lang = document.documentElement.lang === 'fr' ? 'fr' : 'en';
+  menu.querySelectorAll('.lang-switch [data-lang]').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
 
   const isOpen = () => document.body.classList.contains('menu-open');
   function setOpen(open) {

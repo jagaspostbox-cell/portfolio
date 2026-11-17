@@ -47,8 +47,20 @@ body.menu-open{overflow:hidden}
 .nav .lang-switch{background:rgba(14,14,14,.72)}
 .nav .lang-switch button{padding:10px 13px}
 
+/* EN/FR inside the slide-out menu: phones and small tablets only */
+.menu-lang{display:none;max-width:1240px;width:100%;margin:0 auto;align-items:center;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.08)}
+.menu-lang small{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.menu-lang .lang-switch button{padding:12px 20px;font-size:14px}
+
+/* Small screens: solid header bar so page content never shows through behind the buttons */
+@media (max-width:760px){
+  .nav .lang-switch{display:none}
+  .menu-lang{display:flex}
+  .menu-overlay{justify-content:flex-start;gap:22px}
+  .menu-links{flex:1}
+  .nav{top:0;padding:10px 16px;background:rgba(10,10,10,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);pointer-events:auto}
+}
 @media (max-width:560px){
-  .nav{padding:0 16px}
   .burger{width:46px;height:46px}
   .burger span{left:13px;right:13px}
   .menu-overlay{padding:96px 16px 24px}

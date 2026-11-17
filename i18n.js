@@ -15,6 +15,7 @@
     [`Process`, `Méthode`],
     [`Experience`, `Expérience`],
     [`Get in touch`, `Me contacter`],
+    [`Language`, `Langue`],
     [`Let's talk <span aria-hidden="true">↗</span>`, `Parlons-en <span aria-hidden="true">↗</span>`],
     [`Let's talk ↗`, `Parlons-en ↗`],
     [`© 2026 Jagadheesan Sounderajan. All rights reserved.`, `© 2026 Jagadheesan Sounderajan. Tous droits réservés.`],

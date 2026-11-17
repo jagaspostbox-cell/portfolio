@@ -323,7 +323,7 @@
   .socials svg{width:16px;height:16px}
 
   .f-talk{display:flex;justify-content:center;align-items:center;gap:clamp(18px,3vw,36px);margin:56px 0 22px}
-  .f-word{font-family:var(--body);font-weight:900;font-size:clamp(60px,11.5vw,150px);letter-spacing:-.055em;line-height:1;color:var(--ink)}
+  .f-word{white-space:nowrap;font-family:var(--body);font-weight:900;font-size:clamp(60px,11.5vw,150px);letter-spacing:-.055em;line-height:1;color:var(--ink)}
   .mini-badge{position:relative;display:flex;flex-direction:column;align-items:center;margin-top:64px;transform-origin:50% -340px;animation:swing 5s ease-in-out infinite}
   .mini-badge:hover{animation-play-state:paused}
   @keyframes swing{0%,100%{transform:rotate(1.4deg)}50%{transform:rotate(-1.4deg)}}
@@ -386,7 +386,7 @@
     .marquee span{font-size:24px}
   }
 </style>
-<link rel="stylesheet" href="menu.css">
+<link rel="stylesheet" href="menu.css?v=3">
 </head>
 <body>
 
@@ -800,6 +800,30 @@ document.querySelectorAll('.service').forEach(row => {
   }
 })();
 </script>
+<script>
+/* Footer "Let's talk." / "Parlons ensemble.": shrink the words if they don't fit the width */
+(() => {
+  const talk = document.querySelector('.f-talk');
+  if (!talk) return;
+  const words = [...talk.querySelectorAll('.f-word')];
+  function fit() {
+    words.forEach(w => w.style.fontSize = '');
+    const gap = parseFloat(getComputedStyle(talk).columnGap) || 0;
+    const others = [...talk.children].filter(c => !words.includes(c)).reduce((s, c) => s + c.offsetWidth, 0);
+    const wordsW = words.reduce((s, w) => s + w.offsetWidth, 0);
+    const room = talk.clientWidth - others - gap * (talk.children.length - 1);
+    if (wordsW > room && wordsW > 0) {
+      const size = parseFloat(getComputedStyle(words[0]).fontSize) * (room / wordsW) * 0.97;
+      words.forEach(w => w.style.fontSize = size + 'px');
+    }
+  }
+  addEventListener('resize', fit);
+  addEventListener('load', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  new MutationObserver(() => requestAnimationFrame(fit)).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  fit();
+})();
+</script>
 <!-- CV popup -->
 <div class="cv-modal" id="cvModal" role="dialog" aria-modal="true" aria-labelledby="cvTitle" aria-hidden="true">
   <div class="cv-dialog">
@@ -843,7 +867,7 @@ document.querySelectorAll('.service').forEach(row => {
   addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
 })();
 </script>
-<script src="menu.js"></script>
-<script src="i18n.js"></script>
+<script src="menu.js?v=3"></script>
+<script src="i18n.js?v=3"></script>
 </body>
 </html>
