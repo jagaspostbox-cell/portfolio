@@ -402,8 +402,9 @@
     .step{min-height:220px}
     .marquee span{font-size:24px}
   }
-  /* Laptops (wide but not very tall screens): slightly smaller badge */
+  /* Laptops (wide but not very tall screens): smaller title and slightly smaller badge */
   @media (min-width:761px) and (max-height:900px){
+    .hero-word{font-size:clamp(60px,10.3vw,152px)}
     .badge{width:235px}
     .card .slot{top:10px;width:49px;height:10px}
     .card .name{font-size:33px;top:37px}
