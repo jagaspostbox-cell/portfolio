@@ -1,0 +1,58 @@
+/* ---------- Shared hamburger navigation ---------- */
+.nav{position:fixed;top:16px;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0 24px;pointer-events:none}
+.nav > *{pointer-events:auto}
+.nav .logo{padding:10px 18px;border-radius:999px;background:rgba(14,14,14,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);color:var(--ink)}
+
+.burger{position:relative;width:48px;height:48px;border:0;background:transparent;cursor:pointer;display:grid;place-items:center}
+.burger:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.burger span{position:absolute;left:10px;right:10px;height:2px;border-radius:2px;background:var(--ink);transition:transform .45s cubic-bezier(.7,0,.2,1),background .2s}
+.burger:hover span,.menu-open .burger span{background:var(--accent)}
+.burger span:first-child{transform:translateY(-4px)}
+.burger span:last-child{transform:translateY(4px)}
+.menu-open .burger span:first-child{transform:rotate(45deg)}
+.menu-open .burger span:last-child{transform:rotate(-45deg)}
+
+.menu-overlay{position:fixed;inset:0;z-index:90;display:flex;flex-direction:column;justify-content:space-between;gap:30px;padding:110px 24px 32px;overflow-y:auto;
+  background:radial-gradient(ellipse 60% 50% at 85% 0%, rgba(255,106,0,.22), transparent 70%),#0d0d0d;
+  clip-path:inset(0 0 100% 0);visibility:hidden;
+  transition:clip-path .7s cubic-bezier(.7,0,.2,1),visibility 0s linear .7s}
+.menu-open .menu-overlay{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .7s cubic-bezier(.7,0,.2,1),visibility 0s}
+body.menu-open{overflow:hidden}
+
+.menu-links{max-width:1240px;width:100%;margin:0 auto;display:flex;flex-direction:column}
+.menu-links a{--d:0s;display:flex;align-items:baseline;gap:18px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.08);
+  font-family:var(--display);font-weight:800;letter-spacing:-.045em;text-transform:uppercase;font-size:clamp(36px,8vh,92px);line-height:1.04;color:var(--ink);
+  opacity:0;transform:translateY(40px);
+  transition:transform .6s cubic-bezier(.2,.8,.2,1) var(--d),opacity .6s var(--d),color .25s,padding .3s}
+.menu-links a span{font-family:var(--body);font-size:14px;font-weight:600;color:var(--accent);min-width:28px}
+.menu-links a:hover,.menu-links a:focus-visible{color:var(--accent);padding-left:14px;outline:none}
+.menu-open .menu-links a{opacity:1;transform:none}
+
+.menu-foot{max-width:1240px;width:100%;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;
+  opacity:0;transition:opacity .5s .1s}
+.menu-open .menu-foot{opacity:1;transition:opacity .6s .55s}
+.menu-foot small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.menu-foot .menu-mail{font-size:clamp(16px,2vw,20px);font-weight:500;color:var(--ink);overflow-wrap:anywhere}
+.menu-foot .menu-mail:hover{color:var(--accent)}
+.menu-cta{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;background:var(--accent);color:#0a0a0a;font-weight:600;font-size:15px;transition:background .25s}
+.menu-cta:hover{background:#fff}
+
+/* EN / FR switch (banner + menu) */
+.lang-switch{display:inline-flex;padding:4px;border-radius:999px;border:1.5px solid rgba(255,255,255,.22);background:rgba(10,10,10,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.lang-switch button{border:0;background:transparent;color:var(--muted);font:600 13px/1 var(--body);letter-spacing:.06em;padding:11px 15px;border-radius:999px;cursor:pointer;transition:background .2s,color .2s}
+.lang-switch button:hover{color:var(--ink)}
+.lang-switch button[aria-pressed="true"]{background:var(--accent);color:#0a0a0a}
+.lang-switch button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.nav .lang-switch{background:rgba(14,14,14,.72)}
+.nav .lang-switch button{padding:10px 13px}
+
+@media (max-width:560px){
+  .nav{padding:0 16px}
+  .burger{width:46px;height:46px}
+  .burger span{left:13px;right:13px}
+  .menu-overlay{padding:96px 16px 24px}
+}
+@media (prefers-reduced-motion:reduce){
+  .menu-overlay,.menu-links a,.menu-foot,.burger span{transition:none!important}
+}
