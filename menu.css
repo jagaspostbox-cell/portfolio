@@ -1,7 +1,8 @@
 /* ---------- Shared hamburger navigation ---------- */
 .nav{position:fixed;top:16px;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0 24px;pointer-events:none}
 .nav > *{pointer-events:auto}
-.nav .logo{padding:10px 18px;border-radius:999px;background:rgba(14,14,14,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);color:var(--ink)}
+.nav .logo{display:grid;place-items:center;width:52px;height:52px}
+.nav .logo img{display:block;width:30px;height:30px}
 
 .burger{position:relative;width:48px;height:48px;border:0;background:transparent;cursor:pointer;display:grid;place-items:center}
 .burger:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
@@ -44,14 +45,26 @@ body.menu-open{overflow:hidden}
 .lang-switch button[aria-pressed="true"]{background:var(--accent);color:#0a0a0a}
 .lang-switch button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .nav-actions{display:flex;align-items:center;gap:10px}
-.nav .lang-switch{background:rgba(14,14,14,.72)}
-.nav .lang-switch button{padding:10px 13px}
+/* Top corner: plain "EN / FR" text, the current language in full white */
+.nav .lang-switch{align-items:center;padding:0;border:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+.nav .lang-switch button{padding:14px 9px;font-size:13px;font-weight:500;letter-spacing:.04em;color:rgba(245,240,234,.55)}
+.nav .lang-switch button:hover{color:var(--ink)}
+.nav .lang-switch button[aria-pressed="true"]{background:none;color:var(--ink)}
+.nav .lang-switch button + button{position:relative}
+.nav .lang-switch button + button::before{content:"";position:absolute;left:0;top:50%;width:1px;height:12px;margin-top:-6px;background:rgba(245,240,234,.28)}
 
 /* EN/FR inside the slide-out menu: phones and small tablets only */
 .menu-lang{display:none;max-width:1240px;width:100%;margin:0 auto;align-items:center;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.08)}
 .menu-lang small{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .menu-lang .lang-switch button{padding:12px 20px;font-size:14px}
 
+/* Wider screens: clear at the top of the page, dark bar once scrolled so content never shows through */
+@media (min-width:761px){
+  .nav{top:0;padding:16px 24px;border-bottom:1px solid transparent;transition:padding .3s,background .3s,border-color .3s}
+  .nav.scrolled{padding-top:8px;padding-bottom:8px}
+  body:not(.menu-open) .nav.scrolled{pointer-events:auto;background:rgba(10,10,10,.92);border-bottom-color:rgba(255,255,255,.08);
+    -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+}
 /* Small screens: solid header bar so page content never shows through behind the buttons */
 @media (max-width:760px){
   .nav .lang-switch{display:none}
@@ -66,5 +79,5 @@ body.menu-open{overflow:hidden}
   .menu-overlay{padding:96px 16px 24px}
 }
 @media (prefers-reduced-motion:reduce){
-  .menu-overlay,.menu-links a,.menu-foot,.burger span{transition:none!important}
+  .nav,.menu-overlay,.menu-links a,.menu-foot,.burger span{transition:none!important}
 }

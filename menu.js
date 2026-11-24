@@ -34,6 +34,12 @@
   menu.querySelectorAll('.lang-switch [data-lang]').forEach(b =>
     b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
 
+  // Dark bar behind the logo and buttons once the page is scrolled (styled in menu.css)
+  const nav = btn.closest('.nav');
+  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 24);
+  addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
   const isOpen = () => document.body.classList.contains('menu-open');
   function setOpen(open) {
     document.body.classList.toggle('menu-open', open);
