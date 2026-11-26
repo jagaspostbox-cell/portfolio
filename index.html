@@ -110,6 +110,9 @@
             mask-image:linear-gradient(180deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.4) 38%,rgba(0,0,0,.5) 62%,#000 100%)}
   .hero-beam::before{content:"";position:absolute;left:40%;right:40%;top:0;height:55%;
     background:linear-gradient(180deg,rgba(255,220,190,.75),rgba(255,150,70,.35) 55%,transparent);filter:blur(10px)}
+  /* Deep glow rising from the horizon in a wide dome, up to just above the badge */
+  .hero-dome{position:absolute;inset:0;opacity:.55;
+    background:radial-gradient(ellipse 62% 80% at 50% 100%,rgba(255,106,0,.5) 0%,rgba(240,90,0,.34) 30%,rgba(214,72,0,.18) 60%,rgba(190,60,0,.07) 85%,transparent 100%)}
   /* Curved glowing horizon at the bottom */
   .hero-horizon{position:absolute;left:50%;top:calc(100% - 42px);width:max(140vw,1000px);aspect-ratio:1;transform:translateX(-50%);border-radius:50%;
     background:radial-gradient(ellipse 48% 6% at 50% 0%,#fff7f0 0%,#ffd8bb 30%,rgba(255,140,60,.7) 65%,transparent 100%),#0a0a0a;
@@ -451,6 +454,7 @@
       <i style="--x:74%;--y:28%;--s:3px;--t:8s;--d:-4.5s"></i><i style="--x:81%;--y:6%;--s:1.5px;--t:7s;--d:-3.5s"></i><i style="--x:88%;--y:20%;--t:9s;--d:-6.5s"></i>
       <i style="--x:27%;--y:55%;--s:1.5px;--t:10s;--d:-8s"></i><i style="--x:58%;--y:60%;--s:1.5px;--t:10s;--d:-2s"></i><i style="--x:70%;--y:50%;--t:8s;--d:-5.5s"></i>
     </div>
+    <div class="hero-dome"></div>
     <div class="hero-horizon"></div></div>
   <div class="hero-bottom">
     <h1 class="hero-word display">Visual<br>Designer</h1>
